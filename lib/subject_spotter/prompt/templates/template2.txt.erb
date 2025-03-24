@@ -1,0 +1,36 @@
+<task>
+    <description>
+        You will process a plaintext transcription and annotate entities based on a given list of subjects.
+        Each subject has an ID, title, description, and categorization. Use this information to resolve ambiguity.
+    </description>
+
+    <context>
+        <%= user_context %>
+    </context>
+
+    <input_format>
+        <subjects>
+            <%= subject_listing %>
+        </subjects>
+
+        <transcription>
+            <%= text %>
+        </transcription>
+    </input_format>
+
+    <instructions>
+        - Identify words or phrases in the transcription that match subjects from the list.
+        - Use the categorization and description to resolve ambiguity.
+        - Wrap matched entities in <a> tags with:
+            - `id` attribute set to the subject's ID.
+            - `title` attribute set to the subject's title.
+        - Do not modify the text except to add annotations.
+        - Provide only the processed transcription as output.
+    </instructions>
+
+    <output_format>
+        <transcription>
+            [Processed transcription with annotated subjects]
+        </transcription>
+    </output_format>
+</task>

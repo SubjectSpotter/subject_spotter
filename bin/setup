@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e # Exit on error
+
+echo "🚀 Setting up SubjectSpotter..."
+
+# 1️⃣ Install dependencies
+echo "📦 Installing dependencies..."
+bundle install
+
+# 2️⃣ Ask for environment variables
+echo "🔧 Configuring environment variables..."
+read -p "Enter your OpenAI Access Token: " OPENAI_ACCESS_TOKEN
+read -p "Enter OpenAI Model (default: gpt-4): " OPENAI_MODEL
+OPENAI_MODEL=${OPENAI_MODEL:-gpt-4} # Default value if empty
+read -p "Log OpenAI Errors? (true/false, default: false): " OPENAI_LOG_ERRORS
+OPENAI_LOG_ERRORS=${OPENAI_LOG_ERRORS:-false}
+
+# 3️⃣ Save variables to .env in project root
+ENV_FILE=".env"
+echo "💾 Saving configuration to $ENV_FILE"
+{
+  echo "OPENAI_ACCESS_TOKEN='$OPENAI_ACCESS_TOKEN'"
+  echo "OPENAI_MODEL='$OPENAI_MODEL'"
+  echo "OPENAI_LOG_ERRORS='$OPENAI_LOG_ERRORS'"
+} > "$ENV_FILE"
+
+echo "✅ Setup complete! Environment variables are now stored in .env"

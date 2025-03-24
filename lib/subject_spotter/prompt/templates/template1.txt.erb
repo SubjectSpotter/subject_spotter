@@ -1,0 +1,30 @@
+TASK: Process the given transcription and annotate entities using the provided subject list.
+
+### CONTEXT:
+<%= user_context %>
+
+### SUBJECTS:
+<%= subject_listing %>
+
+### TRANSCRIPTION:
+<%= text %>
+
+### INSTRUCTIONS:
+- Identify and match subjects in the transcription.
+- Use the categorization and description to resolve ambiguity.
+- Wrap matched entities in `<a>` tags with:
+  - `id` attribute as the subject’s ID.
+  - `title` attribute as the subject’s title.
+- **DO NOT** modify the text except to add annotations.
+- **DO NOT** provide explanations, reasoning, or any additional text.
+- **RETURN ONLY** the processed transcription.
+
+### EXAMPLE:
+**INPUT:**
+I talked to Mr. H. Hinds yesterday.
+
+**OUTPUT:**
+I talked to <a id="94795" title="Hinds, Howell">Mr. H. Hinds</a> yesterday.
+
+### RESPONSE FORMAT:
+[Processed transcription with annotated subjects. No extra text.]
